@@ -1,40 +1,557 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>CSS Grid</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/night.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h3>CSS Grid</h3>
+        </section>
+        <section>
+          <h3>CSS Grid</h3>
+          <ol>
+            <li>What is CSS Grid</li>
+            <li>Difference vs flexbox</li>
+            <li>
+              Getting into it <span class="fragment">(Do you have codepen?)</span>
+            </li>
+            <li>When flexbox and when grid</li>
+            <li>A couple more grid tricks</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Why?</h3>
+          <br/>
+          <div>Separate the</div>
+          <div>Content / Markup / HTML</div>
+          <div>from the</div>
+          <div>Presentation / Layout / Styling</div>
+          <br/>
+          <aside class="notes">
+            <ol>
+              <li>So yeah, why css grid.</li>
+              <li>we're trying to separate the content from the styling</li>
+              <li>which was One of the ideals of the CSS Working Group</li>
+              <li>that is, you try not to clutter the markup or the HTML itself with the layout description</li>
+              <li>When we use frameworks like bootstrap we see our markup full of style description like <code>col-md-6</code> and so on.</li>
+              <li>Both flexbox and grid enable us to separate content from layout.</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+            Both Flexbox and CSS Grid enable us to properly separate content from layout
+          <aside class="notes">Notes</aside>
+        </section>
+        <section>
+          <h3>Difference?</h3>
+        </section>
+        <section>
+          <!-- TODO CITE QUOTE -->
+          <blockquote
+            cite="#"
+          >Flexbox is essentially for laying out items in a single dimension - in
+          a row OR a column. Grid is for layout of items in two dimensions -
+          rows AND columns. <br/>— Rachel Andrew
+          </blockquote>
+          <p class="r-fit-text">Source: <a href=https://rachelandrew.co.uk/archives/2016/03/30/should-i-use-grid-or-flexbox/>https://rachelandrew.co.uk/archives/2016/03/30/should-i-use-grid-or-flexbox/</a></p>
+        </section>
+        <section>
+          <code>flex-wrap </code>?
+          <aside class="notes">
+            <ol>
+              <li>
+                People may say, but with flex-wrap: wrap, you're able to create a two dimensional layout
+              </li>
+              <li>
+                Jen Simmons has a really nice explanation about this on Youtube
+              </li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <div class="r-stack">
+            <img class="" src="images/grid example.png" />
+            <img class="fragment" src="images/grid example with lines.png" />
+          </div>
+          <p>Source: <a href="https://www.youtube.com/watch?v=hs3piaN4b5I">Jen Simmons on Youtube</a></p>
+          
+          <aside class="notes">
+            <ol>
+              <li>
+                Here's an example layout using CSS Grid of a bunch of boxes of different sizes 
+              </li>
+              <li>
+                Grid has the ability to line things up in two dimensions
+              </li>
+              <li>
+                The calculations are happening considering rows AND columns at the same time
+              </li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <div class="r-stack">
+            <img class="" src="images/flexbox example.png" />
+            <img class="fragment" src="images/flexbox example with lines.png" />
+            <img class="fragment" src="images/flexbox example two lines.png" />
+          </div>
+          <p>Source: <a href="https://www.youtube.com/watch?v=hs3piaN4b5I">Jen Simmons on Youtube</a></p>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+          <aside class="notes">
+            <ol>
+              <li>
+                Here's a similar layout using flexbox with flex-wrap
+              </li>
+              <li>
+                You can think of it as a bunch of boxes in a really long line
+              </li>
+              <li>
+                But, there's only a limited amount of space
+              </li>
+              <li>
+                So it kind of wraps, or doesn't wrap, depending on whether you add flex-wrap
+              </li>
+              <li>
+                The calculations are all happening in a one-dimensional way
+              </li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <h3>Caveat</h3>
+          <ol>
+            <li>
+              CSS Grid and flexbox can be applied to just parts of the application 
+            </li>
+            <li>No obligation to use it everywhere</li>
+          </ol>
+          <aside class="notes">
+            <ol>
+              <li>The caveat here is that if you use CSS Grid,</li>
+              <li>it doesn't mean you have to write your entire application in CSS grid</li>
+              <li>If we use a framework like bootstrap, we're essentially adopting it for the entire application</li>
+              <li>But not so for flexbox and css grid, we can pick parts of the application where it makes sense, and use a mix of layout methods</li>
+              <li>No obligation to use grid everywhere</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <h3>Getting into it</h3>
+          <pre>
+            <code class="hljs css" data-trim>
+						.wrapper {
+        display: grid;
+      }
+            </code>
+          </pre>
+          <p>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/eYPoQXe>https://codepen.io/krithikab/pen/eYPoQXe</a>
+          <aside class="notes">
+            https://codepen.io/krithikab/pen/eYPoQXe
+            <p>We create a grid container by declaring display: grid on an element</p>
+            <p>As soon as we do this, all direct children of that element become grid items</p>
+          </aside>
+        </section>
+        <section
+          data-background-iframe="https://codepen.io/krithikab/embed/eYPoQXe?default-tab=css%2Cresult&editable=true"
+          data-background-interactive
+        >
+          <aside class="notes">
+            <ol>
+              <li><i>Open try css grid</i></li>
+              <li><i>Inspect and reduce opacity to show grid-lines</i></li>
+              <li>One thing to remember is that it's 1-indexed and not 0-indexed</li>
+              <li>The .wrapper is the grid-container and the boxes are the grid-items</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>grid-track</p>
+          <img class="r-stretch" src="images/grid track.png"/>
+          <br/>
+          <p class="r-fit-text"><code>grid-template-columns: &lt;column-track-size&gt; &lt;column-track-size&gt;</code></p>
+          <aside class="notes">
+            <ol>
+              <li>A grid-track is the space between any two adjacent grid-lines</li>
+              <li>So with grid-template-columns, what we're defining is the track size of the different columns</li>
+              <li>The highlighted bit is the first row-track</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+						.wrapper {
+        display: grid;
+        grid-template-columns: 200px 200px;
+      }
+            </code>
+          </pre>
+          <p>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/NWEKxvW>https://codepen.io/krithikab/pen/NWEKxvW</a>
+          <aside class="notes">
+            https://codepen.io/krithikab/pen/NWEKxvW
+            <ol>
+              <li><i>Open try css grid 1</i></li>
+              <li><i>grid-template-columns: 200px 200px</i></li>
+              <li><i>grid-template-columns: 300px 100px</i></li>
+              <li><i>Implicit grid and explicit grid</i></li>
+              <li><i>grid-template-rows: 200px 200px</i></li>
+              <li><i>grid-template-rows: 300px 100px</i></li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>Flexible grid tracks</p>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/ZEqZwON>https://codepen.io/krithikab/pen/ZEqZwON</a>
+          <aside class="notes">
+            <ol>
+              <li>We defined track-sizes using pixels, and we can define them using em, rem and percentages</li>
+              <li>But there's a specific unit for grid called `fr` that's used for flexible track sizing</li>
+              <li>It represents the fractions/ratios</li>
+              <li><i>Open try css grid 2</i></li>
+              <li>gtc: 200px 200px 200px;</li>
+              <li>gtc: 1fr 1fr 1fr;</li>
+              <li>gtc: 2fr 1fr 1fr;</li>
+              <li>gtc: 500px 1fr 1fr;</li>
+              <li>gtc: repeat(3, 1fr);</li>
+              <li>gtc: 80px repeat(3, 1fr) 80px;</li>
+              <li>gtc: repeat(3, 1fr 2fr);</li>
+              <li>gtr: 200px repeat(12, auto);</li>
+              <li>remove gtr</li>
+              <li>When we remove grid-template-rows the track size becomes auto</li>
+              <li>we can define the size of auto using grid-auto-rows</li>
+              <li>gar: 200px</li>
+              <li>gar: minmax(50px, auto)</li>
+              <li><i>add extra content to eight</i></li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+            .box {
+              grid-column-start: ;
+              grid-column-end: ;
+              grid-row-start: ;
+              grid-row-end: ;
+            }
+            </code>
+          </pre>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/ExdJMYZ>https://codepen.io/krithikab/pen/ExdJMYZ</a>
+          <aside class="notes">
+            <ol>
+              <li><i>open try css grid 3</i></li>
+            </ol>
+          </aside>
+        </section>
+        <section>Page layouts are the clearest use-case for CSS grid</section>
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+            .wrapper {
+              grid-template-areas: ;
+            }
+            </code>
+          </pre>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/poxmyvx>https://codepen.io/krithikab/pen/poxmyvx</a>
+          <aside class="notes">
+            <ol>
+              <li>open try css grid 4</li>
+              <li>"header header header"
+                "sidebar content quicklinks"
+                "sidebar footer footer"
+              </li>
+              <li>@media only screen and (min-width: 1000px) {}</li>
+              <li><i>add the gtc and gta in here</i></li>
+              <li></li>
+              <li>@media only screen and (min-width: 600px) {}</li>
+              <li><i>add the gtc and gta in here: 
+                "header header"
+                "sidebar content"
+                "quicklinks quicklinks"
+                "footer footer";</i></li>
+              <li></li>
+              <li><i>remove gtc and add gta alone in the main bit "header"
+                "sidebar"
+                "content"
+                "quicklinks"
+                "footer";</i></li>
+            </ol>
+          </aside>
+        </section>
+        <section>Responsive</section>
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+            .grid-container {
+              grid-template-columns: ;
+              grid-template-rows: ;
+              grid-template-areas: ;
+            }
+            </code>
+          </pre>
+          <br/>
+          <pre>
+            <code class="hljs css" data-trim>
+            .grid-item {
+              grid-column: ;
+              grid-row: ;
+              grid-area: ;
+            }
+            </code>
+          </pre>
+          
+        </section>
+        <section>
+          <h3>Caveat</h3>
+          <p>Source order and accessibility</p>
+          <ol>
+            <li>Only visual reordering, not logical reordering</li>
+            <li>Screen reader = source order</li>
+            <li>Tab order = source order</li>
+          </ol>
+          <aside class="notes">
+            <ol>
+              <li>reordering things with grid layout or flexbox is only visual reordering</li>
+              <li>not logical reordering</li>
+              <li>Someone tabbing through the page could go wherever</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <h3>So, when grid and when flexbox?</h3>
+          <ol>
+            <li>Grid for layout, flexbox for components</li>
+            <li>Grid for parent-down, flexbox for child-up</li>
+            <li>Grid for very specific layout, flexbox for when you just want everything to fit</li>
+          </ol>
+        </section>
+        <section>
+          <p>1. Grid for layout, flexbox for components</p>
+          <p class="fragment">(i disagree)</p>
+          <aside class="notes">
+            <ol>
+              <li>use this along with the caveat that grids can be truly two dimensional but flexbox cannot</li>
+              <li>example: On wikipedia the layout is grid and the toolbars are flex</li>
+            </ol>
+          </aside>
+        </section>
+        <section
+          data-background-iframe="https://en.wikipedia.org/wiki/Lilium_longiflorum"
+          data-background-interactive
+        >
+          <aside class="notes">
+            <ol>
+              <li>open wikipedia</li>
+              <li>grid - mw page container inner</li>
+              <li>grid - mw body</li>
+              <li>flex - vector page titlebar</li>
+              <li>flex - vector page toolbar container</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <blockquote>
+            Hey, when you have a hammer like CSS Grid everything looks like a nail!  <span style="font-style: normal;">😄</span>
+            <br/>— Vernon Kesner
+          </blockquote>
+        </section>        
+        <section>
+          <h3>Caveat</h3>
+          <ol>
+            <li>
+              CSS Grid and flexbox can be applied to just parts of the application <span class="fragment">(wherever it makes most sense)</span> 
+            </li>
+            <li>No obligation to use it everywhere</li>
+          </ol>
+          <aside class="notes">
+            <ol>
+              <li>Some people really think that once you start using css grid and flexbox,</li>
+              <li>you can never use floats or something</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <h3>Caveat</h3>
+          <ol>
+            <li>
+              Grid areas can only be rectangular, they cannot be L-shaped
+            </li>
+          </ol>
+          <aside class="notes">
+            <ol>
+              <li>An extension to this caveat is that grid areas can only be rectangular, like they can't be L-shaped</li>
+              <li><i>reopen wiki page and show lily, float: right thumb.tright</i></li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>2. Grid for parent-down, flexbox for child-up</p>
+          <aside class="notes">
+            <ol>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>2. Grid for parent-down, flexbox for child-up</p>
+          <img src="images/tweet - parent down.png" />
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/WNaBwyL>https://codepen.io/krithikab/pen/WNaBwyL</a>
+          <aside class="notes">
+            <ol>
+              <li>open flex vs grid</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>3. Grid for very specific layout, flexbox for when you just want everything to fit</p>
+          <aside class="notes">
+            <ol>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>3. Grid for very specific layout, flexbox for when you just want everything to fit</p>
+          <img src="images/tweet - reasonable layout.png" />
+          <aside class="notes">
+            <ol>
+            </ol>
+          </aside>
+        </section>
+        <section>          
+          <p>3. Grid for very specific layout, flexbox for when you just want everything to fit</p>
+          <img src="images/tweet - flex when you just want everything to fit.png" />
+          <aside class="notes">
+            <ol>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <img src="images/tweet - mean.png" />
+          <aside class="notes">
+            <ol>
+              <li>just a funny tweet</li>
+            </ol>
+          </aside>
+        </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+            .wrapper {
+              grid-auto-flow: ;
+            }
+            </code>
+          </pre>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/mdQbPGE>https://codepen.io/krithikab/pen/mdQbPGE</a>
+          <aside class="notes">
+            <ol>
+              <li>open try css grid 5</li>
+              <li>
+                grid-template-rows: repeat(4, 100px);
+              </li>
+              <li>
+                grid-auto-flow: column;
+              </li>
+              <li><i>remove those two lines</i></li>
+              <li>
+                grid-template-columns: repeat(4, minmax(200px, auto));
+              </li>
+              <li>grid-template-columns: repeat(auto-fill, minmax(200px, auto));</li>
+              <li>https://codepen.io/krithikab/pen/eYByOoO</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>Block axis: <i>align</i></p>
+          <img src="images/block axis.png"/>
+          <aside class="notes">
+            <ol>
+              <li>block axis or column axis</li>
+              <li>top to bottom</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <p>Inline axis: <i>justify</i></p>
+          <img src="images/inline axis.png"/>
+          <aside class="notes">
+            <ol>
+              <li>inline axis or row axis</li>
+              <li>left to right</li>
+            </ol>
+          </aside>
+        </section>
+        <section>
+          <pre>
+            <code class="hljs css" data-trim>
+            .grid-container {
+              align-items: ;
+              justify-items: ;
+            }
+            </code>
+          </pre>
+          <br/>
+          <pre>
+            <code class="hljs css" data-trim>
+            .grid-item {
+              align-self: ;
+              justify-self: ;
+            }
+            </code>
+          </pre>
+          <br/>
+          <a class="r-frame" href=https://codepen.io/krithikab/pen/WNYezjK>https://codepen.io/krithikab/pen/WNYezjK</a>
+          <aside class="notes">
+            <ol>
+              <li>we can use align-items and align self to align along the block axis</li>
+              <li>and justify-items and justify self for the inline axis</li>
+              <li>open try css grid 6</li>
+              <li>
+                wrapper, align-items: start
+              </li>
+              <li>
+                remove above
+              </li>
+              <li>box2/3/4 align-self: start, end, center</li>
+              <li><i>remove above</i></li>
+              <li><i>box2/3/4 justify-self: start, end, center</i></li>
+            </ol>
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
